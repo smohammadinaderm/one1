@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rtl.css">
+    <link rel="stylesheet" href="rtl-fontawesom/css/all.css">
+    <link rel="stylesheet" href="rtl-fontawesom/all.min.css">
+    <link rel="stylesheet" href="fonts/fonts/woff/IRANSansWeb.woff">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="menubala ">
+        <div class="menubala1 flex ">
+
+            <a href="# " class="instagram-menu-bala "><i class="fab fa-instagram "></i>
+            <div class="line-instagram "></div>
+            </a>
+
+            <a href=" # " class="mail-menu-bala "><i class="far fa-envelope"></i>
+                    <div class="line-mail "></div></a>
+
+        </div>
+
+        <div class="menu-bala2">
+
+            <a href="#" class="menu-menu "><i class="fas fa-bars"></i></a>
+
+
+            <ul class="ul-menu-bala">
+
+                <li class="li-menu-bala safhe-nakhost"><a href="#"> صفحه نخست</a></li>
+
+
+                <li class="li-menu-bala moarefi"><a href="#"> معرفی مهد کودک</a></li>
+
+
+                <li class="li-menu-bala ashnayee"><a href="#">آشنایی با مربیان  </a></li>
+
+
+                <li class="li-menu-bala gallery"> <a href="#">تصاویر </a></li>
+
+
+                <li class="li-menu-bala1"> ورود
+
+                    <ul class="zir-menu-bala">
+
+                        <li class="vorood-menu-bala1 li-menu-bala"> <a href="#">ورود همکاران</a></li>
+
+
+                        <li class="vorood-menu-bala2 li-menu-bala"><a href="#">ورود والدین</a></li>
+
+
+
+                    </ul>
+
+                </li>
+
+
+                <li class="li-menu-bala2">ثبت نام
+                    <ul class="zir-menu-bala1">
+
+                        <li class="sabtenam-menu-bala1 li-menu-bala"><a href="#">ثبت نام همکاران</a></li>
+
+
+                        <li class="sabtenam-menu-bala2 li-menu-bala"><a href="#">ثبت نام والدین</a></li>
+
+
+                        <li class="sabtenam-menu-bala3 li-menu-bala"><a href="#">ثبت نام کودکان</a></li>
+
+
+                        <li class="sabtenam-menu-bala4 li-menu-bala"><a href="#">ثبت نام جهت همکاری</a></li>
+
+                    </ul>
+                </li>
+
+
+                <li class="li-menu-bala3"> تماس با ما
+
+                    <ul class="zir-menu-bala2">
+
+                        <li class="tamas-menu-bala1 li-menu-bala"><a href="#">آدرس مهد </a></li>
+
+
+                        <li class="tamas-menu-bala2 li-menu-bala"><a href="#">شماره تلفن های مهد</a></li>
+
+
+                        <li class="tamas-menu-bala3 li-menu-bala"><a href="#">ایمیل مجموعه </a></li>
+
+
+                        <li class="tamas-menu-bala4 li-menu-bala"><a href="#">پیامرسان های اجتماعی </a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </section>
+
+    <section class="slider1">
+        <div class="center">
+            <div class="slider">
+                <img src="images/kids.jpg" alt="">
+                <img src="images/book.jpg" alt="">
+                <img src="images/image-from-rawpixel-id-14940-jpeg.jpg" alt="">
+                <img src="images/image-from-rawpixel-id-536252-jpeg.jpg" alt="">
+                <img src="images/image-from-rawpixel-id-536152-jpeg.jpg" alt="">
+            </div>
+            <div class="btns">
+                <a href="#" id="next"> بعدی</a>
+                <a href="#" id="prev"> قبلی</a>
+                <a href="#" id="play">شروع</a>
+                <a href="#" id="pause">توقف</a>
+            </div>
+        </div>
+        <script>
+            //همه موارد رو درون این فانکشن قرار میدیم
+            var slider = (function() {
+                //برای انتخاب کردن تصاویر ، باز هم یک فانکشن می نویسیم
+                var slidersara = function(selector, autoslide = false, slidertime = 5000) {
+                    this.items = document.querySelectorAll(selector + ">img");
+                    //ایندکس رو وارد می کنیم به همراه ولیو
+                    this.changedisplay(0, "block");
+
+                    //اکتیو ایندکس که ایندکسی که فعال هست رو میتونیم وارد کنیم .
+                    this.activeindex = 0;
+                    this.autoSlideNumber = 0;
+                    this.slideTime = slidertime;
+                    if (autoslide == true) {
+                        this.autoslide(slidertime);
+                    }
+                };
+                //ایندکسی که کاربر وارد می کنه، طبق ولیو که کاربر میده روی بلاک یا نان  تنظیم شه 
+                slidersara.prototype.changedisplay = function(index, value) {
+                    this.items[index].style.display = value;
+
+                };
+                //همه ولیو ها روی نان قرار بگیرن
+                slidersara.prototype.AllDisplayNone = function() {
+                    var obj = this;
+                    this.each(function(item, index) {
+                        obj.changedisplay(index, "none");
+                    });
+                };
+                //نکست را می نویسیم
+                slidersara.prototype.next = function() {
+                    //پروپرتی ای که برای نان کردن همه دیسپلی ها نوشتیم را فرا میخونیم
+                    this.AllDisplayNone();
+                    //طوری تنظیم می کنیم که به اکتیو ایندکس ، یک عدد اضافه شود 
+                    this.activeindex++;
+                    //تنظیم کنیم که اگر اکتیو ایندکس برابر با آیتم لنک شد ، روی صفر تنظیم شود 
+                    if (this.activeindex == this.items.length) {
+                        this.activeindex = 0;
+                    }
+                    //دیسپلی اکتیو ایندکس رو روی بلاک تنظیم کن
+                    this.changedisplay(this.activeindex, "block");
+
+
+                };
+
+
+                //پریویوس را می نویسیم
+                slidersara.prototype.prev = function() {
+                    //پروپرتی ای که برای نان کردن همه دیسپلی ها نوشتیم را فرا میخونیم
+                    this.AllDisplayNone();
+                    //طوری تنظیم می کنیم که به اکتیو ایندکس ، یک عدد اضافه شود 
+                    this.activeindex--;
+                    //تنظیم کنیم که اگر اکتیو ایندکس برابر با آیتم لنک شد ، روی صفر تنظیم شود 
+                    if (this.activeindex < 0) {
+                        this.activeindex = this.items.length - 1;
+                    }
+                    //دیسپلی اکتیو ایندکس رو روی بلاک تنظیم کن
+                    this.changedisplay(this.activeindex, "block");
+
+
+                };
+                //یک کانسراکتور برای تایم اجرا می نویسیم
+                slidersara.prototype.autoslide = function(time) {
+                    var obj = this;
+                    this.autoSlideNumber = setInterval(function() {
+
+                            obj.next();
+                        },
+                        time);
+                };
+
+
+                slidersara.prototype.pause = function() {
+                    clearInterval(this.autoSlideNumber);
+                }
+
+                slidersara.prototype.play = function() {
+                    this.pause();
+                    this.autoslide(this.slideTime);
+                };
+                //برای دکمه هامون فانکشن تعریف می کنیم
+                slidersara.prototype.setbuttons = function(next, prev, pause, play) {
+                    var obj = this;
+                    if (next) {
+                        document.querySelector(next).onclick = function() {
+                            obj.next();
+                        };
+                    }
+                    if (prev) {
+                        document.querySelector(prev).onclick = function() {
+                            obj.prev();
+                        };
+                    }
+                    if (play) {
+                        document.querySelector(play).onclick = function() {
+                            obj.play();
+                        };
+                    }
+                    if (pause) {
+                        document.querySelector(pause).onclick = function() {
+                            obj.pause();
+                        };
+                    }
+                    return this;
+
+                };
+
+
+                //یک ایچ درون یک فانکشن می نویسیم که حلقه فور رو به تعداد آیتم ها تکرار کنه و ما دیگه برای هر آیتم حلقه فور ننویسیم
+                slidersara.prototype.each = function(FunName) {
+                        for (let index = 0; index < this.items.length; index++) {
+                            FunName(this.items[index], index);
+
+                        }
+                    }
+                    //؟؟؟؟؟؟؟؟
+                var result = function(selector, autoslide = false, slidertime = 5000) {
+                    return new slidersara(selector, autoslide, slidertime);
+                }
+                return result;
+            })();
+
+            slider(".slider", true).setbuttons("#next", "#prev", "#pause", "#play");
+        </script>
+    </section>
+
+
+    <section class="ghatar">
+
+        <div class="parent-ghatar">
+
+
+            <img src="images/ghatar.gif" alt="" class="ghatar-img">
+        </div>
+
+    </section>
+    <section class="morabi">
+        <div id="chang-color">
+
+        </div>
+        <h1 class="h1-morabi">
+
+            آشنایی با مربیان
+        </h1>
+        <div class="div-morabi">
+            <ul class="ul-morabi flex">
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/2.jpg" alt="">
+                        <h2 class="h2-moalem2">آرزو انحصاری</h2>
+                        <span class="span-morabi2">
+  روانشناس کودک
+<br>
+دانشجوی فوق لیسانس تربیت مربی
+<br>
+مسلط به 5 زبان زنده دنیا
+
+</span>
+
+                    </a>
+
+
+                </li>
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/3.jpg" alt="">
+                        <h2 class="h2-moalem2">لیلا قادری</h2>
+                        <span class="span-morabi2">
+  فوق لیسانس روانشناسی کودک
+  <br> 
+دانشجوی مقطع دکتری
+<br>
+دیپلم افتخاری از دانشگاه خوارزمی
+<br>
+مسلط به 8 زبان زنده دنیا
+<br>
+مترجم زبان انگلیسی و عربی
+
+</span>
+
+                    </a>
+                </li>
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/4.jpg" alt="">
+                        <h2 class="h2-moalem2">سکینه صمدی</h2>
+                        <span class="span-morabi2">
+فوق لیسانس هنرهای زیبا
+<br>
+دانشجوی دکتری تصویرسازی کودک
+<br>
+مسلط به خط بریل
+<br>
+عکاس و طراح صحنه
+
+</span>
+
+                    </a>
+                </li>
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/5.jpg" alt="">
+                        <h2 class="h2-moalem2">عرفانه تاجیک</h2>
+                        <span class="span-morabi2">
+دانشجوی فوق لیسانس تربیت مربی
+<br>
+مسلط به زبان انگلیسی و فرانسه 
+<br>
+لیسانس ریاضی
+<br>
+مترجم کتب کودکان
+
+</span>
+
+                    </a>
+                </li>
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/6.jpg" alt="">
+                        <h2 class="h2-moalem2">مهسا اسدی</h2>
+                        <span class="span-morabi2">
+محقق و روانشناس بالینی
+<br>
+مشاور خانواده و کودک پروری
+<br>
+نویسنده
+<br>
+مسلط به زبان های انگلیسی ، فرانسه ، عربی ، ایتالیایی
+
+</span>
+
+                    </a>
+                </li>
+                <li class="li-morabi">
+                    <a href="#" class="link-morabi">
+                        <img class="image-morabi" src="images/7.jpg" alt="">
+                        <h2 class="h2-moalem2">نادیا گمنام</h2>
+                        <span class="span-morabi2">
+دکترای تصویرسازی کودک<br>
+محقق و طراح بازی های رایانه ای
+<br>
+مسلط به زبان یونانی ، انگلیسی ، عربی لبنانی و فرانسه 
+
+</span>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </section>
+    <script>
+        window.onscroll = function() {
+            myFunction()
+        };
+
+        function myFunction() {
+            if (document.getElementsByClassName("morabi").scrollTop > 10 || document.documentElement.scrollTop > 10) {
+                document.getElementById("chang-color").className = "test";
+            } else {
+                document.getElementById("chang-color").className = "";
+            }
+
+
+
+        };
+    </script>
+
+
+
+
+
+    <section class="barname">
+        <h1 class="h1barname">
+            نمونه ویدئوی کلاس ها
+        </h1>
+    </section>
+
+
+
+    <section class="video">
+        <div class="divvideo">
+            <video controls>
+            <source src="../12.mp4" type="video/mp4">
+          </video>
+
+        </div>
+        <h1 class="h1video"><a href="#" class="avideo">نمونه ویدئوهای بیشتر</a></h1>
+
+    </section>
+    <footer class="footer">
+        <ul class="menupaeen ">
+
+            <li><a href="#">صفحه نخست</a></li>
+
+
+            <li><a href="#"> معرفی مهد کودک</a></li>
+
+
+            <li><a href="#">آشنایی با مربیان  </a></li>
+
+
+            <li> <a href="#">تصاویر </a></li>
+            <li> <a href="#">ورود همکاران</a></li>
+
+
+            <li><a href="#">ورود والدین</a></li>
+
+            <li><a href="#">ثبت نام همکاران</a></li>
+
+
+            <li><a href="#">ثبت نام والدین</a></li>
+
+
+            <li><a href="#">ثبت نام کودکان</a></li>
+
+
+            <li><a href="#">ثبت نام جهت همکاری</a></li>
+
+
+
+
+            <li><a href="#">شماره تلفن های مهد</a></li>
+
+            <li><a href="#">پیامرسان های اجتماعی </a></li>
+        </ul>
+
+        <div class="adres">
+            <span class="adressmahd">آدرس مجموعه :
+               <br> اندیشه . فاز 3. خیابان ارکیده . بن بست قریشی . مهد کودک پیشتازان </span>
+            <span class="emailmahd">ایمیل :
+            <br> pishtazan-andishe@gmail.com</span>
+            <span class="copyright">تمامی حقوق متعلق به مهدکودک پیشتازان می باشد &copy;	</span>
+        </div>
+
+
+    </footer>
+</body>
+
+</html>
